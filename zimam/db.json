@@ -1,19 +1,19 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "حليب طازج كامل الدسم 1 لتر",
-      "price": 1.5
+      "name": "حليب طازج ",
+      "price": "5000",
+      "id": "1"
     },
     {
-      "id": "2",
-      "name": "أرز بسمتي هندي فاخر 5 كجم",
-      "price": 12
+      "name": "أرز بسمتي",
+      "price": "15000",
+      "id": "2"
     },
     {
-      "id": "3",
-      "name": "زيت زيتون بكر ممتاز 750 مل",
-      "price": 8.5
+      "name": "زيت زيتون بكر ممتاز 1 لتر",
+      "price": "1000",
+      "id": "3"
     },
     {
       "id": "4",
@@ -69,6 +69,29 @@
       "id": "FUlQ1EqUDGc",
       "name": "asdasd",
       "price": "606060"
+    },
+    {
+      "name": "شاي سيلاني",
+      "price": "6000",
+      "id": "rEbeacpnyfk"
+    },
+    {
+      "name": "شبس أطايب",
+      "price": "6000",
+      "id": "6JM1tC-AhT4"
+    },
+    {
+      "name": "",
+      "id": "h74tI-FudOM"
+    },
+    {
+      "name": "",
+      "id": "1kt-Aaugp4M"
+    },
+    {
+      "name": "شربت رنا",
+      "price": "250",
+      "id": "NS7AZ7BGxcA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

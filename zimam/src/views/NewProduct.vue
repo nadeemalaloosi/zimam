@@ -2,21 +2,40 @@
 import Pagesheader from '@/components/pagesheader.vue';
 import AddProductForm from '@/components/AddProductForm.vue';
 import { useProductStore } from '@/stores/useProductStore';
+import Basebutton from '@/components/Basebutton.vue';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+let router = useRouter()
 const useProduct = useProductStore()
 let productName = ref('')
 let productPrice = ref()
 
-function post() {
-    useProduct.addProduct({ "name": productName.value, "price": productPrice.value },)
+async function post() {
+    if (productName.value === "" || productPrice.value === 0) {
+        console.log("HAllO")
+        return
+    }
+    await useProduct.addProduct({ "name": productName.value, "price": productPrice.value },)
+    router.push('/products')
 }
 
 </script>
 
 
 <template>
-    <Pagesheader />
+    <Pagesheader>
+        <template #default>
+            <Basebutton link="products">
+                <template #svg-img>
+                    <img src="@/assets/svg/products.svg" alt="" srcset="">
+                </template>
+                <template #default>
+                    اضافة وتعديل السلع
+                </template>
+            </Basebutton>
+        </template>
+    </Pagesheader>
     <div>
         <AddProductForm @sendData="post" v-model:productName="productName" v-model:productPrice="productPrice" />
     </div>

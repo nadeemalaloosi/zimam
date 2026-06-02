@@ -47,6 +47,26 @@ export const useProductStore = defineStore("productStore", () => {
       console.error("خطأ في جلب بيانات المنتج:", error);
     }
   };
+
+  const updateSingleProduct = async (productId, updatedData) => {
+    try {
+      // لاحظ كيف أضفنا الـ ID في نهاية الرابط!
+      const response = await fetch(
+        `http://localhost:3000/products/${productId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData),
+        },
+      );
+
+      if (response.ok) {
+        await fetchProducts();
+      }
+    } catch (error) {
+      console.error("خطأ في جلب بيانات المنتج:", error);
+    }
+  };
   return {
     products,
     productNameById,
@@ -54,5 +74,6 @@ export const useProductStore = defineStore("productStore", () => {
     fetchProducts,
     fetchSingleProduct,
     addProduct,
+    updateSingleProduct,
   };
 });

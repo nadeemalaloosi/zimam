@@ -19,7 +19,8 @@ onMounted(() => {
                     <th>#</th>
                     <th>السلعة</th>
                     <th>السعر</th>
-                    <th>تعديل</th>
+                    <th class="text-center">إعدادات</th>
+
 
                 </tr>
             </thead>
@@ -28,10 +29,15 @@ onMounted(() => {
                     <td>{{ index + 1 }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
-                    <td class="flex ">
+                    <td class="flex justify-evenly">
                         <Basebutton :link="/edit-product/ + product.id">
                             <template #svg-img>
                                 <img src="@/assets/svg/edit.svg" alt="">
+                            </template>
+                        </Basebutton>
+                        <Basebutton :link="/delete-product/ + product.id">
+                            <template #svg-img>
+                                <img src="@/assets/svg/delete-btn.svg" alt="">
                             </template>
                         </Basebutton>
                     </td>
