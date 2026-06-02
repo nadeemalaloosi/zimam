@@ -7,6 +7,12 @@ import vueDevTools from "vite-plugin-vue-devtools";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), vueDevTools(), tailwindcss()],
+  server: {
+    watch: {
+      // إخبار فيت بتجاهل مراقبة ملف db.json نهائياً
+      ignored: ["**/db.json"],
+    },
+  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),

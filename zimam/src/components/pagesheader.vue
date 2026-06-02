@@ -5,7 +5,7 @@ import Basebutton from './Basebutton.vue';
 
     <div class=" flex m-10">
         <div class=" w-54 items-center text-right">
-            <RouterLink class="" " to=" /">
+            <RouterLink class="" to="/">
                 <h1 class="font-bold inline text-2xl mr-2">زِمام</h1>
             </RouterLink>
             <RouterLink to="/">

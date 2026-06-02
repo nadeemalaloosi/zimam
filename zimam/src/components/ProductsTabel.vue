@@ -9,6 +9,9 @@ onMounted(() => {
     products.fetchProducts()
 
 })
+function deleteById(id) {
+    products.deleteProductById(id)
+}
 </script>
 
 <template>
@@ -35,7 +38,8 @@ onMounted(() => {
                                 <img src="@/assets/svg/edit.svg" alt="">
                             </template>
                         </Basebutton>
-                        <Basebutton :link="/delete-product/ + product.id">
+
+                        <Basebutton @click.prevent="deleteById(product.id)">
                             <template #svg-img>
                                 <img src="@/assets/svg/delete-btn.svg" alt="">
                             </template>

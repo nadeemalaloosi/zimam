@@ -67,10 +67,28 @@ export const useProductStore = defineStore("productStore", () => {
       console.error("خطأ في جلب بيانات المنتج:", error);
     }
   };
+  const deleteProductById = async (productId) => {
+    try {
+      // لاحظ كيف أضفنا الـ ID في نهاية الرابط!
+      const response = await fetch(
+        `http://localhost:3000/products/${productId}`,
+        {
+          method: "DELETE",
+        },
+      );
+
+      if (response.ok) {
+        await fetchProducts();
+      }
+    } catch (error) {
+      console.error("خطأ في حذف المنتج:", error);
+    }
+  };
   return {
     products,
     productNameById,
     productPriceById,
+    deleteProductById,
     fetchProducts,
     fetchSingleProduct,
     addProduct,
