@@ -15,7 +15,7 @@ import Basebutton from '@/components/Basebutton.vue';
                     <img src="@/assets/svg/products.svg" alt="" srcset="">
                 </template>
                 <template #default>
-                    اضافة سلع
+                    اضافة وتعديل السلع
                 </template>
             </Basebutton>
             <Basebutton link="create-new-invoice">
