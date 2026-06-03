@@ -12,7 +12,7 @@ onMounted(() => {
     products.fetchProducts()
 
 })
-function deleteById(id) {
+function deleteById(id: string) {
     products.deleteProductById(id)
 }
 </script>

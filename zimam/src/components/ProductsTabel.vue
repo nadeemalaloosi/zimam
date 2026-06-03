@@ -13,7 +13,7 @@ defineProps({
                     <th class="py-4 px-2">#</th>
                     <th class="py-4 px-2">السلعة</th>
                     <th class="py-4 px-2">السعر</th>
-                    <slot newHeaders="headers"></slot>
+                    <slot name="Headers"></slot>
                     <th class="py-4 px-2 text-center">إعدادات</th>
                 </tr>
             </thead>
@@ -25,7 +25,7 @@ defineProps({
                     <td class="py-4 px-2">{{ index + 1 }}</td>
                     <td class="py-4 px-2 font-medium">{{ product.name }}</td>
                     <td class="py-4 px-2 text-blue-600 font-bold">{{ product.price }} دينار</td>
-                    <slot newItems="items"></slot>
+                    <slot name="items"></slot>
                     <td class="py-4 px-2">
                         <div class="flex justify-evenly items-center gap-2">
                             <slot name="setting-btn" :productId="product.id"></slot>
