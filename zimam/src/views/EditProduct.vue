@@ -1,6 +1,7 @@
 <script setup>
 import Pagesheader from '@/components/pagesheader.vue';
 import AddProductForm from '@/components/AddProductForm.vue';
+import Basebutton from '@/components/Basebutton.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
@@ -28,8 +29,21 @@ async function update() {
 
 
 <template>
-    <Pagesheader />
-    <div>
-        <AddProductForm @sendData="update" v-model:productName="productName" v-model:productPrice="productPrice" />
+    <Pagesheader>
+        <template #default>
+            <Basebutton link="/products">
+                <template #svg-img>
+                    <img src="@/assets/svg/products.svg" alt="" srcset="">
+                </template>
+                <template #default>
+                    السلع
+                </template>
+            </Basebutton>
+
+        </template>
+    </Pagesheader>
+    <div class="mt-30  grid place-items-center">
+        <AddProductForm @sendData="update" v-model:productName="productName" buttonName="تعديل السلعة"
+            v-model:productPrice="productPrice" />
     </div>
 </template>

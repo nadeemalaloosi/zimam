@@ -31,12 +31,14 @@ async function post() {
                     <img src="@/assets/svg/products.svg" alt="" srcset="">
                 </template>
                 <template #default>
-                    اضافة وتعديل السلع
+                    السلع
                 </template>
             </Basebutton>
+
         </template>
     </Pagesheader>
-    <div>
-        <AddProductForm @sendData="post" v-model:productName="productName" v-model:productPrice="productPrice" />
+    <div class="mt-30  grid place-items-center">
+        <AddProductForm @sendData="post" buttonName="اضافة السلعة" v-model:productName="productName"
+            v-model:productPrice="productPrice" />
     </div>
 </template>

@@ -15,40 +15,46 @@ function deleteById(id) {
 </script>
 
 <template>
-    <div class=" place-items-center mt-20 grid ">
-        <table class=" border-spacing-y-5 border-separate w-4/5 border-collapse ">
-            <thead class=" text-right border-b p-2 border-gray-200">
+    <div class="grid place-items-center mt-20">
+        <table v-if="products.products.length > 0" class="w-4/5 text-right">
+
+            <thead class="border-b border-gray-200 text-gray-500">
                 <tr>
-                    <th>#</th>
-                    <th>السلعة</th>
-                    <th>السعر</th>
-                    <th class="text-center">إعدادات</th>
-
-
+                    <th class="py-4 px-2">#</th>
+                    <th class="py-4 px-2">السلعة</th>
+                    <th class="py-4 px-2">السعر</th>
+                    <th class="py-4 px-2 text-center">إعدادات</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="  " v-for="(product, index) in products.products" :key="product.id">
-                    <td>{{ index + 1 }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td class="flex justify-evenly">
-                        <Basebutton :link="/edit-product/ + product.id">
-                            <template #svg-img>
-                                <img src="@/assets/svg/edit.svg" alt="">
-                            </template>
-                        </Basebutton>
 
-                        <Basebutton @click.prevent="deleteById(product.id)">
-                            <template #svg-img>
-                                <img src="@/assets/svg/delete-btn.svg" alt="">
-                            </template>
-                        </Basebutton>
+            <tbody>
+                <tr v-for="(product, index) in products.products" :key="product.id"
+                    class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+
+                    <td class="py-4 px-2">{{ index + 1 }}</td>
+                    <td class="py-4 px-2 font-medium">{{ product.name }}</td>
+                    <td class="py-4 px-2 text-blue-600 font-bold">{{ product.price }} دينار</td>
+
+                    <td class="py-4 px-2">
+                        <div class="flex justify-evenly items-center gap-2">
+                            <Basebutton :link="/edit-product/ + product.id">
+                                <template #svg-img>
+                                    <img src="@/assets/svg/edit.svg" alt="">
+                                </template>
+                            </Basebutton>
+
+                            <Basebutton @click.prevent="deleteById(product.id)">
+                                <template #svg-img>
+                                    <img src="@/assets/svg/delete-btn.svg" alt="">
+                                </template>
+                            </Basebutton>
+                        </div>
                     </td>
 
                 </tr>
 
             </tbody>
         </table>
+        <p v-else class="font-bold text-4xl">لا يوجد سلع</p>
     </div>
 </template>
