@@ -39,6 +39,11 @@
       "name": "شبس باز",
       "price": "5000",
       "id": "OWIpS8hM76A"
+    },
+    {
+      "name": "كرزات",
+      "price": "6000",
+      "id": "C97go4O-dPY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -25,7 +25,7 @@ defineProps({
                     <td class="py-4 px-2">{{ index + 1 }}</td>
                     <td class="py-4 px-2 font-medium">{{ product.name }}</td>
                     <td class="py-4 px-2 text-blue-600 font-bold">{{ product.price }} دينار</td>
-                    <slot name="items"></slot>
+                    <slot name="items" :productQuantity="product.quantity"></slot>
                     <td class="py-4 px-2">
                         <div class="flex justify-evenly items-center gap-2">
                             <slot name="setting-btn" :productId="product.id"></slot>

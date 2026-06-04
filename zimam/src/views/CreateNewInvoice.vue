@@ -5,21 +5,43 @@ import pagesheader from '@/components/pagesheader.vue';
 import ProductsTabel from '@/components/ProductsTabel.vue';
 
 import { useProductStore } from '@/stores/useProductStore';
+import { useInvoiceStore } from '@/stores/useInvoiceStore';
 import { ref, onMounted } from 'vue'
-let customerName = ref('');
+let customerName = ref(null);
 let productQuantity = ref(null)
 let selectedProduct = ref(null)
-let addedProducts = ref([])
 
 
+let invoiceStore = useInvoiceStore();
 let products = useProductStore();
 onMounted(() => {
     products.fetchProducts()
 
 })
-function PrintData() {
-    console.log("المنتج المختار:", selectedProduct.value);
-    console.log("السعر:", selectedProduct.value.price);
+function prepareSelectedProductData() {
+    console.log(selectedProduct.value.id)
+    let data = {
+        "id": selectedProduct.value.id,
+        "name": selectedProduct.value.name,
+        "price": selectedProduct.value.price,
+        "quantity": productQuantity.value,
+    }
+
+    invoiceStore.addSelectedProduct(data);
+
+    console.log(invoiceStore.productsList)
+
+}
+function prepareInvoiceData() {
+    if (customerName.value != null) {
+        if (invoiceStore.productsList.length != 0) {
+            console.log("Please add at least one artikle")
+        } else {
+            console.log("Please add at least one artikle")
+        }
+    } else {
+        console.log("fill the field of customer")
+    }
 }
 </script>
 
@@ -31,26 +53,26 @@ function PrintData() {
 
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">إنشاء بيان جديد</h2>
-                <InvoiceForm @sendData="PrintData" v-model:productQuantity="productQuantity"
+                <InvoiceForm @sendData="prepareSelectedProductData" v-model:productQuantity="productQuantity"
                     v-model:customerName="customerName" :products="products.products"
                     v-model:selectedProduct="selectedProduct" buttonName="إضافة إلى المشتريات" />
             </div>
 
-            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <ProductsTabel class="w-full bg-white rounded shadow-sm" :products="products.products">
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 h-80 overflow-scroll max-h-2/4">
+                <ProductsTabel class="w-full bg-white rounded shadow-sm" :products="invoiceStore.productsList">
                     <template #Headers>
                         <th class="py-3 px-2">الكمية</th>
                     </template>
-                    <template #items>
-                        <td class="py-3 px-2 font-bold text-blue-600">0</td>
+                    <template #items="{ productQuantity }">
+                        <td class="py-3 px-2 font-bold text-blue-600">{{ productQuantity }}</td>
                     </template>
-                    <template #setting-btn>
+                    <template #setting-btn="{ productId }">
                         <Basebutton>
                             <template #svg-img>
                                 <img src="@/assets/svg/edit.svg" alt="حذف">
                             </template>
                         </Basebutton>
-                        <Basebutton>
+                        <Basebutton @click="invoiceStore.removeProduct(productId)">
                             <template #svg-img>
                                 <img src="@/assets/svg/delete-btn.svg" alt="حذف">
                             </template>
@@ -62,10 +84,10 @@ function PrintData() {
             <div class="flex justify-between items-center border-t border-gray-200 pt-6">
                 <div class="text-xl">
                     <span class="font-bold text-gray-700">المجموع الكلي: </span>
-                    <span class="font-bold text-green-600 text-2xl px-2">0 دينار</span>
+                    <span class="font-bold text-green-600 text-2xl px-2">{{ invoiceStore.grandTotal }} دينار</span>
                 </div>
 
-                <Basebutton>
+                <Basebutton @click="prepareInvoiceData">
                     <template #svg-img>
                         <img src="@/assets/svg/add.svg" alt="اعتماد">
                     </template>
