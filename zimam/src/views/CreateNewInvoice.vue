@@ -7,6 +7,8 @@ import ProductsTabel from '@/components/ProductsTabel.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref, onMounted } from 'vue'
 let customerName = ref('');
+let productQuantity = ref(null)
+let selectedProduct = ref(null)
 let addedProducts = ref([])
 
 
@@ -15,6 +17,10 @@ onMounted(() => {
     products.fetchProducts()
 
 })
+function PrintData() {
+    console.log("المنتج المختار:", selectedProduct.value);
+    console.log("السعر:", selectedProduct.value.price);
+}
 </script>
 
 <template>
@@ -25,7 +31,9 @@ onMounted(() => {
 
             <div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">إنشاء بيان جديد</h2>
-                <InvoiceForm :products="products.products" buttonName="إضافة إلى المشتريات" />
+                <InvoiceForm @sendData="PrintData" v-model:productQuantity="productQuantity"
+                    v-model:customerName="customerName" :products="products.products"
+                    v-model:selectedProduct="selectedProduct" buttonName="إضافة إلى المشتريات" />
             </div>
 
             <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">

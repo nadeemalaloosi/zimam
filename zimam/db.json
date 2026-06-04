@@ -29,6 +29,16 @@
       "name": "سيشسي",
       "price": "4000",
       "id": "S17sgZA-85c"
+    },
+    {
+      "name": "شبس باز",
+      "price": "5000",
+      "id": "LbTibtjgvy4"
+    },
+    {
+      "name": "شبس باز",
+      "price": "5000",
+      "id": "OWIpS8hM76A"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
