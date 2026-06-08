@@ -2,12 +2,14 @@
 import { useInvoiceStore } from '@/stores/useInvoiceStore';
 import invoiceTable from '@/components/invoiceTable.vue';
 import invoiceHeader from '@/components/invoiceHeader.vue';
+import router from '@/router';
 const invoiceStore = useInvoiceStore();
 
 
 const printDocument = () => {
     window.print();
-
+    invoiceStore.archive()
+    router.push('/')
 
 };
 
@@ -19,7 +21,8 @@ const printDocument = () => {
     <div
         class="max-w-4xl mx-auto mt-10 bg-white p-10 rounded-lg shadow-xl print:shadow-none print:m-0 print:p-0 print:max-w-full">
 
-        <invoiceHeader :invoiceId="invoiceStore?.currentInvoice?.id" @printDocument="printDocument" />
+        <invoiceHeader :archive="invoiceStore?.currentInvoice?.archive" :invoiceId="invoiceStore?.currentInvoice?.id"
+            @printDocument="printDocument" />
 
         <div class="mb-8 p-4 bg-gray-50 rounded-lg print:bg-transparent print:p-0">
             <p class="text-xl font-bold text-gray-700">

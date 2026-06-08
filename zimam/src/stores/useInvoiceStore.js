@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { ref, computed, toRaw } from "vue";
+import axios from "axios";
+
 export const useInvoiceStore = defineStore("invoiceStore", () => {
+  const archive_URL = "http://localhost:4000/archive";
   const Invoice = ref(null);
   let productsList = ref([]);
   const isLoading = ref(false);
-  let customerName = ref("ali");
+  let customerName = ref("");
 
   const lastInvoiceNumber = ref(1000);
   const currentInvoice = ref(null);
@@ -37,17 +40,28 @@ export const useInvoiceStore = defineStore("invoiceStore", () => {
     // 3. تجهيز كائن الفاتورة النهائي كما سيعيده لك لارافيل تماماً
     const finalInvoiceData = {
       id: invoiceId,
-      customer: customerName,
+      archive: false,
+      customer: customerName.value,
       items: [...productsList.value],
       total: grandTotal.value,
       date: new Date().toLocaleDateString("ar-EG"),
     };
 
-    // 4. حفظ النتيجة وتصفير سلة المشتريات لعميل جديد
     currentInvoice.value = finalInvoiceData;
 
-    isLoading.value = false; // إنهاء التحميل
-    return true; // إخبار الواجهة بنجاح العملية
+    isLoading.value = false;
+    return true;
+  };
+  const archive = async () => {
+    try {
+      const cleanData = toRaw(currentInvoice.value);
+
+      const r = await axios.post(archive_URL, cleanData);
+      customerName = "";
+      productsList.value = [];
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return {
@@ -57,6 +71,7 @@ export const useInvoiceStore = defineStore("invoiceStore", () => {
     isLoading,
     productsList,
     grandTotal,
+    archive,
     removeProduct,
     addSelectedProduct,
     submitInvoiceToServer,

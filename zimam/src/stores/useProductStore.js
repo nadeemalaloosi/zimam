@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+
 export const useProductStore = defineStore("productStore", () => {
   const products = ref([]);
 
@@ -22,7 +23,7 @@ export const useProductStore = defineStore("productStore", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
       });
-      if (response.ok) {
+      if (r.ok) {
         await fetchProducts();
       }
     } catch (error) {
