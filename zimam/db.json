@@ -1,19 +1,14 @@
 {
   "products": [
     {
-      "name": "شوكولاتة داكنة بالبندق",
-      "price": "8000",
-      "id": "7INKeejBZeM"
-    },
-    {
-      "name": "علبة سميري",
-      "price": "6000",
-      "id": "_tg9zdIWI4Y"
-    },
-    {
       "name": "شعر بنات",
-      "price": "6000",
+      "price": "500",
       "id": "Fj41iW66j3k"
+    },
+    {
+      "name": "علبة بسكويت بالتمر ",
+      "price": "550",
+      "id": "1qRfsVkJ04A"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -26,11 +26,10 @@ export const useInvoiceStore = defineStore("invoiceStore", () => {
       return total + item.price * item.quantity;
     }, 0); // الصفر هنا هو نقطة البداية للمجموع
   });
-  // 💡 الدالة السحرية التي تحاكي الـ Backend (Laravel) تماماً
-  const submitInvoiceToServer = async () => {
-    isLoading.value = true; // ابدأ التحميل (سيقفل الزر في الواجهة)
 
-    // 1. محاكاة تأخير الشبكة (ثانية ونصف) لكي يشعر المستخدم بواقعية التطبيق
+  const submitInvoiceToServer = async () => {
+    isLoading.value = true;
+
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // 2. محاكاة سلوك لارافيل في توليد رقم متسلسل آمن
@@ -54,11 +53,14 @@ export const useInvoiceStore = defineStore("invoiceStore", () => {
   };
   const archive = async () => {
     try {
+      currentInvoice.value.archive = true;
+
       const cleanData = toRaw(currentInvoice.value);
 
       const r = await axios.post(archive_URL, cleanData);
       customerName = "";
       productsList.value = [];
+      currentInvoice = null;
     } catch (error) {
       console.log(error);
     }

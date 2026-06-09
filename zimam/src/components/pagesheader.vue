@@ -1,5 +1,11 @@
 <script setup>
 import Basebutton from './Basebutton.vue';
+defineProps({
+    home: {
+        type: Boolean,
+        default: false
+    },
+})
 </script>
 <template>
 
@@ -18,7 +24,7 @@ import Basebutton from './Basebutton.vue';
 
         <div class=" flex w-4/5 justify-evenly ">
 
-            <Basebutton link="/">
+            <Basebutton v-if="!home" link="/">
                 <template #svg-img>
                     <img src="@/assets/svg/home.svg" alt="" srcset="">
                 </template>

@@ -2,17 +2,34 @@
 import Basebutton from '@/components/Basebutton.vue';
 import ProductsTabel from '@/components/ProductsTabel.vue';
 import pagesheader from '@/components/pagesheader.vue';
-
+import popupModel from '@/components/popupModel.vue';
 import { useProductStore } from '@/stores/useProductStore';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,Teleport } from 'vue';
 
 let products = useProductStore();
-// تشغيل دالة الجلب تلقائياً بمجرد تحميل المكون في المتصفح
+let toggleModal = ref(false);
+let trackerproductId = ref("");
 onMounted(() => {
     products.fetchProducts()
 
 })
+function setProductId(id){
+        if (!toggleModal.value){
+        trackerproductId.value = id
+        console.log(trackerproductId.value)
+    } else{
+        trackerproductId.value = ""
+        console.log(trackerproductId.value)
+    }
+
+}
+function toggleDeleteModal(id){
+    setProductId(id)
+    toggleModal.value = !toggleModal.value;
+}
+
 function deleteById(id: string) {
+
     products.deleteProductById(id)
 }
 </script>
@@ -31,7 +48,20 @@ function deleteById(id: string) {
             </Basebutton>
         </template>
     </pagesheader>
-
+<Teleport to="body">
+    <popupModel :showingModal="toggleModal" @closeModal="toggleModal = false">
+      <template #header>
+       هل تريد فعلا حذف سلعة:
+      </template>
+      <template #default>
+        <p>اسم السلعة المحذوفة</p>
+      </template>
+      <template #footer>
+          <button class="bg-red-500 hover:bg-red-600 rounded-md cursor-pointer p-1 ml-5" @click="deleteById(trackerproductId); toggleDeleteModal()" >حذف</button>
+          <button class="bg-green-500 hover:bg-green-600 rounded-md cursor-pointer p-1 ml-5" @click="toggleModal = false">إلغاء</button>
+    </template>
+    </popupModel>
+</Teleport>
     <ProductsTabel :products="products.products">
         <template #setting-btn="{ productId }">
             <Basebutton :link="/edit-product/ + productId">
@@ -40,7 +70,7 @@ function deleteById(id: string) {
                 </template>
             </Basebutton>
 
-            <Basebutton @click="deleteById(productId)">
+            <Basebutton @click="toggleDeleteModal(productId)">
                 <template #svg-img>
                     <img src="@/assets/svg/delete-btn.svg" alt="">
                 </template>

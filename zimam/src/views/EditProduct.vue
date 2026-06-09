@@ -7,7 +7,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 
 const route = useRoute()
-const router = useRouter(); // لتوجيه المستخدم بعد الحفظ
+const router = useRouter(); 
 const productId = route.params.id;
 const useProduct = useProductStore()
 let productName = ref('')
