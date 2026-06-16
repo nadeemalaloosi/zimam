@@ -2,16 +2,6 @@
   "products": [
     {
       "name": "علبة بسكويت بالتمر ",
-      "price": 5000,
-      "id": "1qRfsVkJ04A"
-    },
-    {
-      "name": "زيت زيتون بكر ممتاز 1 لتر",
-      "price": 3000,
-      "id": "p91Oj4Lknb4"
-    },
-    {
-      "name": "علبة بسكويت بالتمر ",
       "price": 1000,
       "id": "NL5amBR0KQ4"
     },
@@ -19,6 +9,11 @@
       "name": "علبة بسكويت بالتمر ",
       "price": 5,
       "id": "R0u-PJmMFV8"
+    },
+    {
+      "name": "ليز بالكتشب",
+      "price": 6000,
+      "id": "PsQhovoh3Wc"
     }
   ],
   "archive": [
@@ -48,6 +43,7 @@
       ],
       "total": 64000,
       "date": "٩‏/٦‏/٢٠٢٦"
-    }],
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,48 +1,46 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { productsService } from "@/services/porductsService";
 
 export const useProductStore = defineStore("productStore", () => {
   const products = ref([]);
-
   const productNameById = ref("");
   const productPriceById = ref(0);
 
+  const refreshProductlist = async (response) => {
+    if (response.status === 201 || response.status === 200) {
+      await fetchProducts();
+    }
+  };
+
   const fetchProducts = async () => {
     try {
-      let r = await fetch("http://localhost:3000/products");
-
-      products.value = await r.json();
+      const r = await productsService.getAll();
+      products.value = r.data;
     } catch (error) {
       console.error("حدث خطأ في جلب البيانات", error);
     }
   };
-  const addProduct = async (newProduct) => {
+
+  const addProduct = async (productData) => {
     try {
-      const r = await fetch("http://localhost:3000/products", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newProduct),
-      });
-      if (r.ok) {
-        await fetchProducts();
-      }
+      const r = await productsService.create(productData);
+      refreshProductlist(r);
     } catch (error) {
       console.error("خطأ في الإضافة:", error);
+      if (error.r) {
+        console.log("السبب:", error.r.data);
+      }
     }
   };
 
   const fetchSingleProduct = async (productId) => {
     try {
-      // لاحظ كيف أضفنا الـ ID في نهاية الرابط!
-      const response = await fetch(
-        `http://localhost:3000/products/${productId}`,
-      );
+      const r = await productsService.getOne(productId);
 
-      if (response.ok) {
-        const data = await response.json();
-        // تعبئة الحقول بالبيانات القادمة من السيرفر لكي يراها المستخدم ويعدلها
-        productNameById.value = data.name;
-        productPriceById.value = data.price;
+      if (r.status === 201 || r.status === 200) {
+        productNameById.value = r.data.name;
+        productPriceById.value = r.data.price;
       }
     } catch (error) {
       console.error("خطأ في جلب بيانات المنتج:", error);
@@ -51,40 +49,23 @@ export const useProductStore = defineStore("productStore", () => {
 
   const updateSingleProduct = async (productId, updatedData) => {
     try {
-      // لاحظ كيف أضفنا الـ ID في نهاية الرابط!
-      const response = await fetch(
-        `http://localhost:3000/products/${productId}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedData),
-        },
-      );
+      const r = await productsService.update(productId, updatedData);
 
-      if (response.ok) {
-        await fetchProducts();
-      }
+      refreshProductlist(r);
     } catch (error) {
       console.error("خطأ في جلب بيانات المنتج:", error);
     }
   };
+
   const deleteProductById = async (productId) => {
     try {
-      // لاحظ كيف أضفنا الـ ID في نهاية الرابط!
-      const response = await fetch(
-        `http://localhost:3000/products/${productId}`,
-        {
-          method: "DELETE",
-        },
-      );
-
-      if (response.ok) {
-        await fetchProducts();
-      }
+      const r = await productsService.delete(productId);
+      refreshProductlist(r);
     } catch (error) {
       console.error("خطأ في حذف المنتج:", error);
     }
   };
+
   return {
     products,
     productNameById,

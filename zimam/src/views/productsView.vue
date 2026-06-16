@@ -29,7 +29,7 @@ function toggleDeleteModal(id) {
 }
 
 function deleteById(id: string) {
-
+    toggleModal.value = !toggleModal.value;
     products.deleteProductById(id)
 }
 </script>
