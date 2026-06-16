@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "format": "oxfmt src/",
     "server:main": "npx json-server db.json --port 3000",
-  "server:archive": "npx json-server archive.json --port 4000",
-  "dev:all": "concurrently \"npm run dev\" \"npm run server:main\" \"npm run server:archive\""
+  "dev:all": "concurrently \"npm run dev\" \"npm run server:main\""
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

@@ -24,6 +24,10 @@ const currentDate = new Date().toLocaleDateString('ar-EG', {
             class="px-6 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 font-bold">
             العودة
         </button>
+        <button v-if="!archive" @click="$emit('archiveInvoice')"
+            class="px-6 py-2 text-gray-200 bg-green-700 rounded hover:bg-green-800 font-bold">
+            حفظ البيان
+        </button>
         <button @click="emit('printDocument')"
             class="px-6 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 font-bold flex items-center gap-2">
             🖨️ طباعة البيان
@@ -40,9 +44,9 @@ const currentDate = new Date().toLocaleDateString('ar-EG', {
         <div>
             <h1 class="text-4xl font-black text-gray-800">بيان مبيعات</h1>
             <p class="text-gray-500 mt-2 font-bold">تاريخ الإصدار: <span class="text-gray-800">{{ currentDate
-                    }}</span></p>
+            }}</span></p>
             <p class="text-gray-500 mt-2 font-bold">رقم البيان: <span class="text-gray-800">{{ invoiceId
-                    }}</span></p>
+            }}</span></p>
         </div>
 
     </div>
