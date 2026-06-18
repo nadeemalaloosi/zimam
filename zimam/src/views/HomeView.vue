@@ -13,7 +13,7 @@ import BaseButton from '@/components/BaseButton.vue';
             </div>
 
             <div class="flex flex-col md:flex-row justify-evenly items-center w-full gap-8">
-                <BaseButton link="products" text="اضافة وتعديل السلع">
+                <BaseButton link="products" text="السلع">
                     <img src="@/assets/svg/products.svg" alt="أيقونة المنتجات">
                 </BaseButton>
 

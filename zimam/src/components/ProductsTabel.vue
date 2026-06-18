@@ -5,12 +5,12 @@ defineProps({
 </script>
 
 <template>
-    <div class="grid place-items-center mt-20">
-        <table v-if="products.length > 0" class="w-4/5 text-right">
+    <div class="flex justify-center rounded-2xl w-full  max-w-7xl bg-gray-100  ">
+        <table v-if="products.length > 0" class="max-h-1/4 overflow-y-scroll w-4/5 text-right">
 
             <thead class="border-b border-gray-200 text-gray-500">
                 <tr>
-                    <th class="py-4 px-2">#</th>
+                    <th class="py-4 px-2">الرقم</th>
                     <th class="py-4 px-2">السلعة</th>
                     <th class="py-4 px-2">السعر</th>
                     <slot name="Headers"></slot>
@@ -24,7 +24,7 @@ defineProps({
 
                     <td class="py-4 px-2">{{ index + 1 }}</td>
                     <td class="py-4 px-2 font-medium">{{ product.name }}</td>
-                    <td class="py-4 px-2 text-blue-600 font-bold">{{ product.price }} دينار</td>
+                    <td class="py-4 px-2 text-gray-600 font-bold">{{ product.price }} د.ع</td>
                     <slot name="items" :productQuantity="product.quantity"></slot>
                     <td class="py-4 px-2">
                         <div class="flex justify-evenly items-center gap-2">

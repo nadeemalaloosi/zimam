@@ -43,12 +43,12 @@ const toggleMenu = () => {
             </RouterLink>
             <RouterLink v-if="route.name !== 'products'" to="/products"
                 class="flex items-center gap-2 border border-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors">
-                <img class="w-5 h-5" src="@/assets/svg/add.svg" alt="ايقونة اضافة منتج">
-                <span>اضافة منتجات</span>
+                <img class="w-5 h-5" src="@/assets/svg/products.svg" alt="ايقونة اضافة منتج">
+                <span>السلع</span>
             </RouterLink>
             <RouterLink v-if="route.name !== 'create-new-invoice'" to="/create-new-invoice"
                 class="flex items-center gap-2 border border-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors">
-                <img src="@/assets/svg/products.svg" class="w-5 h-5" alt="ايقونى اتنشاء بيان">
+                <img src="@/assets/svg/add.svg" class="w-5 h-5" alt="ايقونى اتنشاء بيان">
                 <span>انشاء بيان</span>
             </RouterLink>
         </nav>
