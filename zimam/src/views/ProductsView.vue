@@ -1,36 +1,33 @@
 <script setup lang="ts">
-import Basebutton from '@/components/Basebutton.vue';
+
 import ProductsTabel from '@/components/ProductsTabel.vue';
 import TheHeader from '@/components/ TheHeader.vue';
 import popupModel from '@/components/popupModel.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref, onMounted, Teleport } from 'vue';
-import BaseButton from '@/components/BaseButton.vue';
 
-let products = useProductStore();
-let toggleModal = ref(false);
-let trackerproductId = ref("");
+const products = useProductStore();
+const toggleModal = ref(false);
+const trackerproductId = ref("");
+const productName = ref("");
+
 onMounted(() => {
     products.fetchProducts()
 
 })
-function setProductId(id) {
-    if (!toggleModal.value) {
-        trackerproductId.value = id
-        console.log(trackerproductId.value)
-    } else {
-        trackerproductId.value = ""
-        console.log(trackerproductId.value)
-    }
+const setProductData = (id = "", newProductName = "") => {
 
-}
-function toggleDeleteModal(id) {
-    setProductId(id)
+    trackerproductId.value = id;
+    productName.value = newProductName;
+
+};
+const toggleDeleteModal = (id = "", newProductName = "") => {
+    setProductData(id, newProductName)
     toggleModal.value = !toggleModal.value;
 }
 
-function deleteById(id: string) {
-    toggleModal.value = !toggleModal.value;
+const deleteById = (id: string) => {
+    toggleDeleteModal()
     products.deleteProductById(id)
 }
 </script>
@@ -57,11 +54,11 @@ function deleteById(id: string) {
 
             </div>
         </main>
-        <div class="bg-white border border-gray-100 shadow-sm rounded-xl overflow-hidden ">
+        <div class="bg-white max-h-[60vh] border border-gray-100 shadow-sm rounded-xl overflow-y-auto">
 
-            <div class="flex w-6xl  items-center  justify-center">
+            <div class="flex w-full items-center justify-center min-w-[900px]">
                 <ProductsTabel :products="products.products">
-                    <template #setting-btn="{ productId }">
+                    <template #setting-btn="{ productId, productName }">
                         <div class="flex items-center justify-center gap-2">
 
                             <RouterLink :to="`/edit-product/${productId}`"
@@ -71,7 +68,7 @@ function deleteById(id: string) {
                                     class="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity">
                             </RouterLink>
 
-                            <button @click="toggleDeleteModal(productId)"
+                            <button @click="toggleDeleteModal(productId, productName)"
                                 class="p-2 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors"
                                 title="حذف السلعة">
                                 <img src="@/assets/svg/delete-btn.svg" alt="حذف"
@@ -92,7 +89,7 @@ function deleteById(id: string) {
                 هل تريد فعلا حذف سلعة:
             </template>
             <template #default>
-                <p>اسم السلعة المحذوفة</p>
+                <p class=" font-bold"> {{ productName }}</p>
             </template>
             <template #footer>
                 <button class="bg-red-500 hover:bg-red-600 rounded-md cursor-pointer p-1 ml-5"

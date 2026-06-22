@@ -28,7 +28,7 @@ defineProps({
                     <slot name="items" :productQuantity="product.quantity"></slot>
                     <td class="py-4 px-2">
                         <div class="flex justify-evenly items-center gap-2">
-                            <slot name="setting-btn" :productId="product.id"></slot>
+                            <slot name="setting-btn" :productId="product.id" :productName="product.name"></slot>
 
                         </div>
                     </td>

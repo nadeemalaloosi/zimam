@@ -1,7 +1,6 @@
 <script setup>
 
 import AddProductForm from '@/components/AddProductForm.vue';
-import Basebutton from '@/components/Basebutton.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
@@ -58,13 +57,20 @@ async function update() {
     router.push('/products');
 }
 
-
 </script>
-
-
 <template>
     <TheHeader />
-    <div class="mt-30  grid place-items-center">
+    <main class="w-full max-w-5xl flex justify-center px-4 mt-8">
+
+        <div class=" max-w-6xl w-xl ">
+
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">تعديل السلعة</h2>
+                <p class="text-sm text-gray-500 mt-1">تغيير إسم السلعة وسعرها</p>
+            </div>
+        </div>
+    </main>
+    <div class="mt-10  grid place-items-center">
         <AddProductForm @sendData="validation" v-model:errorProductName="errorProductName"
             v-model:errorPrice="errorPrice" v-model:productName="productName" buttonName="تعديل السلعة"
             v-model:productPrice="productPrice" />
