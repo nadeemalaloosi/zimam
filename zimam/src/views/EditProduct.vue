@@ -64,10 +64,9 @@ async function update() {
     <div class="flex justify-center">
         <HeaderInfo class="justify-center items-center max-w-4xl" title="تعديل السلعة"
             subtitle="تغيير إسم السلعة وسعرها" />
-
     </div>
 
-    <div class="mt-10  grid place-items-center">
+    <div class="  grid place-items-center">
         <ProductForm @sendData="validation" v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice"
             v-model:productName="productName" buttonName="تعديل السلعة" v-model:productPrice="productPrice" />
     </div>

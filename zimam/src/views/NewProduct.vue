@@ -56,7 +56,7 @@ async function post() {
         <HeaderInfo class="justify-center items-center max-w-4xl" title="إضافة سلعة"
             subtitle="إدخال سلعة جديدة الى قائمة السلع" />
     </div>
-    <div class="mt-10  grid place-items-center">
+    <div class="  grid place-items-center">
         <ProductForm v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice" @sendData="validation"
             buttonName="اضافة السلعة" v-model:productName="productName" v-model:productPrice="productPrice" />
     </div>
