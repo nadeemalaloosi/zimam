@@ -1,9 +1,10 @@
 <script setup>
-import AddProductForm from '@/components/AddProductForm.vue';
+import ProductForm from '@/components/ProductForm.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import TheHeader from '@/components/ TheHeader.vue';
+import HeaderInfo from '@/components/HeaderInfo.vue';
 
 
 let router = useRouter()
@@ -51,10 +52,12 @@ async function post() {
 
 <template>
     <TheHeader />
-
-    <div class="mt-30  grid place-items-center">
-        <AddProductForm v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice"
-            @sendData="validation" buttonName="اضافة السلعة" v-model:productName="productName"
-            v-model:productPrice="productPrice" />
+    <div class="flex justify-center">
+        <HeaderInfo class="justify-center items-center max-w-4xl" title="إضافة سلعة"
+            subtitle="إدخال سلعة جديدة الى قائمة السلع" />
+    </div>
+    <div class="mt-10  grid place-items-center">
+        <ProductForm v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice" @sendData="validation"
+            buttonName="اضافة السلعة" v-model:productName="productName" v-model:productPrice="productPrice" />
     </div>
 </template>

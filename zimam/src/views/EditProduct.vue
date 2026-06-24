@@ -1,10 +1,11 @@
 <script setup>
 
-import AddProductForm from '@/components/AddProductForm.vue';
+import ProductForm from '@/components/ProductForm.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import TheHeader from '@/components/ TheHeader.vue';
+import HeaderInfo from '@/components/HeaderInfo.vue';
 
 const route = useRoute()
 const router = useRouter();
@@ -60,19 +61,15 @@ async function update() {
 </script>
 <template>
     <TheHeader />
-    <main class="w-full max-w-5xl flex justify-center px-4 mt-8">
+    <div class="flex justify-center">
+        <HeaderInfo class="justify-center items-center max-w-4xl" title="تعديل السلعة"
+            subtitle="تغيير إسم السلعة وسعرها" />
 
-        <div class=" max-w-6xl w-xl ">
-
-            <div>
-                <h2 class="text-2xl font-bold text-gray-800">تعديل السلعة</h2>
-                <p class="text-sm text-gray-500 mt-1">تغيير إسم السلعة وسعرها</p>
-            </div>
-        </div>
-    </main>
-    <div class="mt-10  grid place-items-center">
-        <AddProductForm @sendData="validation" v-model:errorProductName="errorProductName"
-            v-model:errorPrice="errorPrice" v-model:productName="productName" buttonName="تعديل السلعة"
-            v-model:productPrice="productPrice" />
     </div>
+
+    <div class="mt-10  grid place-items-center">
+        <ProductForm @sendData="validation" v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice"
+            v-model:productName="productName" buttonName="تعديل السلعة" v-model:productPrice="productPrice" />
+    </div>
+
 </template>

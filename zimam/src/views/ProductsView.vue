@@ -5,6 +5,7 @@ import TheHeader from '@/components/ TheHeader.vue';
 import popupModel from '@/components/popupModel.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref, onMounted, Teleport } from 'vue';
+import HeaderInfo from '@/components/HeaderInfo.vue';
 
 const products = useProductStore();
 const toggleModal = ref(false);
@@ -37,23 +38,15 @@ const deleteById = (id: string) => {
     <div class="flex flex-col items-center w-full min-h-screen bg-gray-50">
 
         <TheHeader />
-        <main class="w-full max-w-5xl px-4 mt-8">
-
-            <div class="flex justify-between items-center mb-6">
-
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800">قائمة السلع</h2>
-                    <p class="text-sm text-gray-500 mt-1">إدارة المنتجات وتحديث أسعارها</p>
-                </div>
-
+        <HeaderInfo title="قائمة السلع" subtitle="إدارة المنتجات وتحديث أسعارها">
+            <slot>
                 <RouterLink to="/new-product"
                     class="flex items-center gap-2 bg-green-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-green-600 transition-all shadow-sm hover:shadow-md">
                     <img src="@/assets/svg/addProduct.svg" alt="اضافة" class="w-5 h-5">
                     <span>إضافة سلعة جديدة</span>
                 </RouterLink>
-
-            </div>
-        </main>
+            </slot>
+        </HeaderInfo>
         <div class="bg-white max-h-[60vh] border border-gray-100 shadow-sm rounded-xl overflow-y-auto">
 
             <div class="flex w-full items-center justify-center min-w-[900px]">
