@@ -1,64 +1,14 @@
 {
   "products": [
     {
-      "name": "علبة بسكويت بالتمر ",
+      "name": "كوكا كولا",
       "price": 5000,
-      "id": "R0u-PJmMFV8"
+      "id": "oMK34LZkYu4"
     },
     {
-      "name": "ليز بالكتشب",
+      "name": "عصير رنا",
       "price": 6000,
-      "id": "PsQhovoh3Wc"
-    },
-    {
-      "name": "شعر بنات",
-      "price": 6000,
-      "id": "ROoK9eYB6EY"
-    },
-    {
-      "name": "زيت زيتون بكر ممتاز 1 لتر",
-      "price": 5100,
-      "id": "3ZUGZ_JJu4Y"
-    },
-    {
-      "name": "سيشسي",
-      "price": 2000,
-      "id": "_8GX7V9DCgo"
-    },
-    {
-      "name": "علبة سميري",
-      "price": 222,
-      "id": "K6xSgvnTLm0"
-    },
-    {
-      "name": "علبة سميري",
-      "price": 3002,
-      "id": "6LkwAPWFAbU"
-    },
-    {
-      "name": "شوكولاتة داكنة بالبندق",
-      "price": 5552,
-      "id": "I95Kx67KrgI"
-    },
-    {
-      "name": "زيت زيتون بكر ممتاز 1 لتر",
-      "price": 655,
-      "id": "kKBo40wKWdI"
-    },
-    {
-      "name": "سيشسي",
-      "price": 6464444,
-      "id": "kdDUspwIaaE"
-    },
-    {
-      "name": "علبة سميري",
-      "price": 333,
-      "id": "LgBuxK1vzxI"
-    },
-    {
-      "name": "شبس باباي",
-      "price": 60000,
-      "id": "nJMUP2sdHvg"
+      "id": "NhKbPg6pLVY"
     }
   ],
   "archive": [
@@ -174,6 +124,22 @@
       ],
       "total": 1132200,
       "date": "٢٥‏/٦‏/٢٠٢٦"
+    },
+    {
+      "id": "Eeu9tInHlwY",
+      "InvoiceNumber": "INV-1002",
+      "archive": true,
+      "customer": "اسواق الشفاء",
+      "items": [
+        {
+          "id": "oMK34LZkYu4",
+          "name": "كوكا كولا",
+          "price": 5000,
+          "quantity": 3
+        }
+      ],
+      "total": 15000,
+      "date": "٥‏/٧‏/٢٠٢٦"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

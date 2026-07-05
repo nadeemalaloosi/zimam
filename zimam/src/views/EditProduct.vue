@@ -6,6 +6,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import TheHeader from '@/components/TheHeader.vue';
 import HeaderInfo from '@/components/HeaderInfo.vue';
+import { useValidation } from '@/composables/useValidation';
 
 const route = useRoute()
 const router = useRouter();
@@ -13,9 +14,19 @@ const productId = route.params.id;
 const useProduct = useProductStore()
 const productName = ref('')
 const productPrice = ref(null)
-const errorProductName = ref(false)
-const errorPrice = ref(false)
 
+const { errorProductName, errorPrice, validateProduct } = useValidation();
+
+const onSubmit = () => {
+
+    const isValid = validateProduct(productName.value, productPrice.value);
+
+    if (isValid) {
+        post();
+    } else {
+        console.log("يوجد خطأ في المدخلات، لن يتم الحفظ.");
+    }
+};
 onMounted(async () => {
     await useProduct.fetchSingleProduct(productId);
     productName.value = useProduct.productNameById
@@ -67,7 +78,7 @@ async function update() {
     </div>
 
     <div class="  grid place-items-center">
-        <ProductForm @sendData="validation" v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice"
+        <ProductForm @sendData="onSubmit" v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice"
             v-model:productName="productName" buttonName="تعديل السلعة" v-model:productPrice="productPrice" />
     </div>
 

@@ -5,42 +5,25 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import TheHeader from '@/components/TheHeader.vue';
 import HeaderInfo from '@/components/HeaderInfo.vue';
-
+import { useValidation } from '@/composables/useValidation';
 
 const useProduct = useProductStore()
 const router = useRouter()
 const productName = ref('')
 const productPrice = ref(null)
-const errorProductName = ref(false)
-const errorPrice = ref(false)
-const validation = () => {
-    if (productName.value === "" && productPrice.value === null) {
-        errorPrice.value = true;
-        errorProductName.value = true;
 
-        return
+const { errorProductName, errorPrice, validateProduct } = useValidation();
+
+const onSubmit = () => {
+
+    const isValid = validateProduct(productName.value, productPrice.value);
+
+    if (isValid) {
+        post();
+    } else {
+        console.log("يوجد خطأ في المدخلات، لن يتم الحفظ.");
     }
-    if (productName.value === "") {
-        errorProductName.value = true;
-        return
-    }
-    if (productPrice.value === null) {
-        errorPrice.value = true;
-        return
-    }
-    if (productPrice.value <= 0 || typeof (productPrice.value) != "number") {
-
-
-
-        console.log((productPrice.value > 0))
-        console.log(typeof (productPrice.value))
-
-        console.log(productPrice.value + "    الرجاء ادخال قيمة صحيحة")
-        return
-    }
-    post()
-
-}
+};
 async function post() {
 
     await useProduct.addProduct({ "name": productName.value, "price": productPrice.value },)
@@ -57,7 +40,7 @@ async function post() {
             subtitle="إدخال سلعة جديدة الى قائمة السلع" />
     </div>
     <div class="  grid place-items-center">
-        <ProductForm v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice" @sendData="validation"
+        <ProductForm v-model:errorProductName="errorProductName" v-model:errorPrice="errorPrice" @sendData="onSubmit"
             buttonName="اضافة السلعة" v-model:productName="productName" v-model:productPrice="productPrice" />
     </div>
 </template>
