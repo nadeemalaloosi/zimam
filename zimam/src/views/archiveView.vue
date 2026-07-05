@@ -5,7 +5,7 @@ import InvoiceCard from '@/components/InvoiceCard.vue';
 import { onMounted, ref, computed } from 'vue';
 import { useArchiveStore } from '@/stores/useArchiveStore';
 import router from '@/router';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 import HeaderInfo from '@/components/HeaderInfo.vue';
 
 const archive = useArchiveStore()

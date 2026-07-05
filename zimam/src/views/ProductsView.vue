@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import ProductsTabel from '@/components/ProductsTabel.vue';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 import popupModel from '@/components/popupModel.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref, onMounted, Teleport } from 'vue';

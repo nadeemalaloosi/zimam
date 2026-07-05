@@ -3,8 +3,6 @@ defineProps({
     data: Object
 })
 
-// سيطبع البيانات القادمة في لحظة الولادة الأولى للمكون فقط
-// console.log("البيانات الابتدائية:", props.data)
 </script>
 
 <template>

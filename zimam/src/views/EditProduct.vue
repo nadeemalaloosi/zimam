@@ -4,7 +4,7 @@ import ProductForm from '@/components/ProductForm.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 import HeaderInfo from '@/components/HeaderInfo.vue';
 
 const route = useRoute()

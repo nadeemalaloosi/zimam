@@ -4,7 +4,7 @@ import invoiceHeader from '@/components/invoiceHeader.vue';
 import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
 import { useArchiveStore } from '@/stores/useArchiveStore';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 
 
 let archive = useArchiveStore()

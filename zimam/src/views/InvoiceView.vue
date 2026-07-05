@@ -5,7 +5,7 @@ import invoiceHeader from '@/components/invoiceHeader.vue';
 import { toRaw } from 'vue';
 import router from '@/router';
 import { useArchiveStore } from '@/stores/useArchiveStore';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 const invoiceStore = useInvoiceStore();
 const archiveStore = useArchiveStore()
 

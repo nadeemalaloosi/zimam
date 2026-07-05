@@ -3,7 +3,7 @@ import ProductForm from '@/components/ProductForm.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 import HeaderInfo from '@/components/HeaderInfo.vue';
 
 

@@ -7,7 +7,7 @@ import { useProductStore } from '@/stores/useProductStore';
 import { useInvoiceStore } from '@/stores/useInvoiceStore';
 import { ref, onMounted } from 'vue'
 import ErrorMessage from '@/components/ErrorMessage.vue';
-import TheHeader from '@/components/ TheHeader.vue';
+import TheHeader from '@/components/TheHeader.vue';
 
 const router = useRouter()
 
