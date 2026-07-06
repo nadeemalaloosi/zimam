@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
-import ProductsTabel from '@/components/ProductsTabel.vue';
+import ProductsTable from '@/components/ProductsTable.vue';
 import TheHeader from '@/components/TheHeader.vue';
-import PopupModel from '@/components/PopupModel.vue';
+import PopupModal from '@/components/PopupModal.vue';
 import { useProductStore } from '@/stores/useProductStore';
 import { ref, onMounted, Teleport } from 'vue';
 import HeaderInfo from '@/components/HeaderInfo.vue';
@@ -50,7 +50,7 @@ const deleteById = (id: string) => {
         <div class="bg-white max-h-[60vh] border border-gray-100 shadow-sm rounded-xl overflow-y-auto">
 
             <div class="flex w-full items-center justify-center min-w-[900px]">
-                <ProductsTabel :products="products.products">
+                <ProductsTable :products="products.products">
                     <template #setting-btn="{ productId, productName }">
                         <div class="flex items-center justify-center gap-2">
 
@@ -70,14 +70,14 @@ const deleteById = (id: string) => {
 
                         </div>
                     </template>
-                </ProductsTabel>
+                </ProductsTable>
             </div>
 
 
         </div>
     </div>
     <Teleport to="body">
-        <PopupModel :showingModal="toggleModal" @closeModal="toggleModal = false">
+        <PopupModal :showingModal="toggleModal" @closeModal="toggleModal = false">
             <template #header>
                 هل تريد فعلا حذف سلعة:
             </template>
@@ -90,7 +90,7 @@ const deleteById = (id: string) => {
                 <button class="bg-green-500 hover:bg-green-600 rounded-md cursor-pointer p-1 ml-5"
                     @click="toggleModal = false">إلغاء</button>
             </template>
-        </PopupModel>
+        </PopupModal>
     </Teleport>
 
 </template>

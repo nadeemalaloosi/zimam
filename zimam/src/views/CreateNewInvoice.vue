@@ -1,7 +1,7 @@
 <script setup>
 
 import InvoiceForm from '@/components/InvoiceForm.vue';
-import ProductsTabel from '@/components/ProductsTabel.vue';
+import ProductsTable from '@/components/ProductsTable.vue';
 import { useRouter } from 'vue-router';
 import { useProductStore } from '@/stores/useProductStore';
 import { useInvoiceStore } from '@/stores/useInvoiceStore';
@@ -102,7 +102,7 @@ const prepareInvoiceData = async () => {
 
             <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 h-80 overflow-scroll max-h-2/4">
                 <ErrorMessage message="الرجاء ادخال سلعة واحدة على الأقل" :taggle="errorProductsTable" />
-                <ProductsTabel class="w-full bg-white rounded shadow-sm" :products="invoiceStore.productsList">
+                <ProductsTable class="w-full bg-white rounded shadow-sm" :products="invoiceStore.productsList">
                     <template #Headers>
                         <th class="py-3 px-2">الكمية</th>
                     </template>
@@ -124,7 +124,7 @@ const prepareInvoiceData = async () => {
                                 class="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity">
                         </button>
                     </template>
-                </ProductsTabel>
+                </ProductsTable>
             </div>
 
             <div class="flex justify-between items-center border-t border-gray-200 pt-6">
