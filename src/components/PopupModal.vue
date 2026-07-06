@@ -5,17 +5,7 @@ defineProps({
 </script>
 
 <template>
-    <!--  هنالك طريقتان لتعريف التحول
-      1- كتابتها داخل العنصر ذاته
-      2- اعطاءها اسم وكتابها دائل css
-      <transition   name="modal" >
-    :
-    :
-    <style> 
-        .modal-enter-from{} 
-        .modal-enter-to{}
-        .modal-enter-active{}
-      -->
+
     <transition enter-from-class=" scale-130 opacity-0 " enter-to-class="  opacity-100 "
         enter-active-class="transition duration-300" leave-from-class=" opacity-100 "
         leave-to-class=" scale-130 opacity-0 " leave-active-class="transition duration-500">
@@ -23,12 +13,12 @@ defineProps({
             <div class="modal-container">
                 <header>
                     <slot name="header">
-                    
+
                     </slot>
                 </header>
                 <div>
                     <slot>
-                      
+
                     </slot>
                 </div>
                 <footer>
