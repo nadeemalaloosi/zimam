@@ -34,7 +34,9 @@ To run the project locally on your machine, please follow these steps:
 
 2. **Navigate to the project directory:**
 
-cd zimam 3. **Install dependencies:**
+cd zimam 
+
+3. **Install dependencies:**
 
 npm install
 
@@ -48,6 +50,7 @@ npm run dev:all
 ## Developer
 
 Nadeem AL-Aloosi
-LinkedIn Profile:
 
-GitHub Profile:
+LinkedIn Profile: https://www.linkedin.com/in/nadeem-al-aloosi-b6922828b/
+
+GitHub Profile: https://github.com/nadeemalaloosi
