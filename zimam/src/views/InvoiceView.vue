@@ -2,23 +2,24 @@
 import { useInvoiceStore } from '@/stores/useInvoiceStore';
 import InvoiceTable from '@/components/InvoiceTable.vue';
 import InvoiceHeader from '@/components/InvoiceHeader.vue';
-import { toRaw } from 'vue';
+import { ref, toRaw } from 'vue';
 import router from '@/router';
 import { useArchiveStore } from '@/stores/useArchiveStore';
 import TheHeader from '@/components/TheHeader.vue';
+import IsLoading from '@/components/IsLoading.vue';
 const invoiceStore = useInvoiceStore();
 const archiveStore = useArchiveStore()
-
-
+const isLoading = ref(false)
 const printDocument = () => {
     window.print();
 };
-const archiveInvoice = () => {
+const archiveInvoice = async () => {
     invoiceStore.currentInvoice.archive = true;
     const cleanData = toRaw(invoiceStore.currentInvoice)
-    console.log(cleanData)
-    archiveStore.archive(cleanData)
+    isLoading.value = true
+    await archiveStore.archive(cleanData)
     invoiceStore.resetData()
+    isLoading.value = false
     router.push('/archive')
 }
 
@@ -26,6 +27,7 @@ const archiveInvoice = () => {
 </script>
 
 <template>
+    <IsLoading :isLoading="isLoading" />
     <TheHeader class=" print:hidden" />
     <div
         class="max-w-4xl mx-auto mt-10 bg-white p-10 rounded-lg shadow-xl print:shadow-none print:m-0 print:p-0 print:max-w-full">
